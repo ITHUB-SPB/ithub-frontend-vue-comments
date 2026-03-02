@@ -1,48 +1,68 @@
 # ithub-frontend-vue-comments
 
-This template should help get you started developing with Vue 3 in Vite.
+_(контрольная точка №3)_
 
-## Recommended IDE Setup
+## Задание
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Приложение представляет собой дневник с записями (постами), а также комментариями к ним.
 
-## Recommended Browser Setup
+## Требования и критерии оценивания
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+### Стек
 
-## Type Support for `.vue` Imports in TS
+Использовать фреймворк `Vue 3` с `Composition API` и библиотеку `Pinia` для реализации хранилища.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+### Компоненты
 
-## Customize configuration
+Определить и реализовать компоненты
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Input (в двух вариациях: однострочным полем и текстовой областью)
+- Button (в двух вариациях: базовой и опасной)
+- Comment
+- Post
+- Modal
 
-## Project Setup
+Используя компоненты, реализовать интерфейс согласно [макету](https://www.figma.com/file/p4jDYcwlRsEVihOixcleWQ/Social-Book?type=design&node-id=0%3A1&mode=design&t=oi6vnFrdABIgP06f-1).
 
-```sh
-npm install
+### Посты
+
+Для каждого поста необходимо реализовать:
+
+- Добавление поста через форму (по нажатию на кнопку)
+- Удаление поста (по нажатию на кнопку)
+- Изменение поста (по нажатию на кнопку)
+- Список привязанных комментариев (по нажатию на кнопку)
+
+Для каждого поста должна быть возможность редактирования текста. По нажатию на кнопку необходимо сформировать модальное окно, где внутри `textarea` будет помещен текст поста с возможностью его изменить и сохранить. Если нажать на кнопку “Закрыть”, модальное окно должно закрыться без сохранения данных в посте (никаких изменений быть не должно)
+
+### Комментарии
+
+К каждому посту необходимо реализовать возможность отображения комментариев. По нажатию на кнопку мы можем либо отобразить, либо спрятать все комментарии. Данный функционал можно реализовать через модель (isShow) без выноса в хранилище.
+
+Также к посту должна быть реализована возможность создать и удалить комментарий по примеру в макете. 
+
+### Хранилище
+
+```js
+[
+    {
+      id: 1,
+      title: "Сегодня было замечательное предложение пойти поужинать этим вечером. Главное, чтобы погода была преимущественно теплой.",
+      comments: [
+        { id: 1, text: "Самый яркий комментарий в этом посте" },
+        { id: 2, text: "Один из бессмысленный комментарий в этом посте"}
+      ]
+    },
+    {
+      id: 2,
+      title: "Краткосрочное вымышленное преломление может выполнять особую роль в пространстве главной роли игрока ",
+      comments: [
+        { id: 1, text: "Очень научно и непонятно" },
+      ]
+    }
+]
 ```
 
-### Compile and Hot-Reload for Development
+## Формат сдачи
 
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Прикрепить ответ ссылкой на собственную ветку (+ 0.5 балла) либо форк
