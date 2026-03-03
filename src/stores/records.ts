@@ -19,5 +19,19 @@ export const useRecordsStore = defineStore('records', {
                 ]
             }
         ]
-    })
+    }),
+    getters: {
+        commentsQuantity: (state) => {
+            return (postId: number) => state.posts.find(({ id }) => id === postId).comments.length
+        }
+    },
+    actions: {
+        deleteComment: (state) => {
+            return (postId: number, commentId: number) => {
+                const post = state.posts.find(({ id }) => id === postId)
+                const commentIndex = post.comments.findIndex(({ id }) => id === commentId)
+                post.comments.splice(commentIndex, 1)
+            }
+        }
+    }
 })

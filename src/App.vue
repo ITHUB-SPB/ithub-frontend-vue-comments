@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { useRecordsStore } from './stores/records';
+import Post from './components/Post.vue';
 
 const recordsStore = useRecordsStore()
-console.log(recordsStore.posts)
 </script>
 
 <template>
   <header></header>
   <main>
-    <p v-for="record in recordsStore.posts" :key="record.id">
-      {{ record.title }}
-      <hr>
-      <p v-for="comment in record.comments" :key="record.id + '_' + comment.id">
-        {{ comment.text }}
-      </p>
-    </p>
+    <Post 
+      v-for="record in recordsStore.posts" 
+      :id="record.id" 
+      :title="record.title" 
+      :comments="record.comments"
+      :commentsQuantity="recordsStore.commentsQuantity(record.id)"
+    />
   </main>
 </template>
 
