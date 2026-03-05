@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import { useRecordsStore } from './stores/records';
-import Post from './components/Post.vue';
+import { useRecordsStore } from './stores/records'
+import Post from './components/Post.vue'
+import NewPost from './components/NewPost.vue'
 
 const recordsStore = useRecordsStore()
 </script>
 
 <template>
-  <header></header>
+  <header>
+    <NewPost />
+  </header>
   <main>
-    <Post 
-      v-for="record in recordsStore.posts" 
-      :id="record.id" 
-      :title="record.title" 
+    <Post
+      v-for="record in recordsStore.posts"
+      :id="record.id"
+      :title="record.title"
       :comments="record.comments"
-      :commentsQuantity="recordsStore.commentsQuantity(record.id)"
+      :commentsQuantity="recordsStore.commentsQuantity(record.id) ?? 0"
     />
   </main>
 </template>
